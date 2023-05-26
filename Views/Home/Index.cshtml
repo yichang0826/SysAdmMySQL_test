@@ -6,7 +6,23 @@
     <h1 class="display-4">Welcome?</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
 <form asp-controller="Home" asp-action="InsertMySQL">
     <input name="userName" />
     <input type="submit" />
 </form>
+
+<div>
+    <h3>使用者清單：</h3>
+    <ul>
+        @foreach (var user in ViewBag.Users)
+        {
+            <li>
+                <form asp-controller="Home" asp-action="DeleteMySQL" method="post">
+                    <input type="hidden" name="userName" value="@user" />
+                    <button type="submit">Delete</button>@user
+                </form>
+            </li>
+        }
+    </ul>
+</div>
